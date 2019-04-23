@@ -12,6 +12,7 @@ public class Fluxo {
         System.out.println("Inicio do método 1");
         metodo2();
         System.out.println("Fim do método 1");
+
     }
 
     private static void metodo2() {
@@ -20,7 +21,7 @@ public class Fluxo {
         System.out.println("Fim do método 2");
     }
 
-    private static void metodo3() {
+    private static void metodo3(){
         System.out.println("Inicio do método 3");
         for (int i = 0; i <= 5 ; i++) {
             System.out.println(i);
