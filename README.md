@@ -14,23 +14,26 @@ Base para exercícios entregavéis dos cursos de desenvolvimento mobile Android
 
 ## Material Design 
 #### Componentes 
-https://material.io/develop/android/
+https://material.io/develop/android/ <br/>
+
 #### Color ##
-https://www.materialpalette.com/
-https://material.io/tools/color/
+https://www.materialpalette.com/ <br/>
+https://material.io/tools/color/ <br/>
+
 #### Icons ##
-https://materialdesignicons.com/
-https://material.io/tools/icons/?style=baseline
+https://materialdesignicons.com/ <br/>
+https://material.io/tools/icons/?style=baseline <br/>
+
 #### inspiração de app e design ##
-https://www.uplabs.com/
-https://dribbble.com/
-https://www.sketchappsources.com/
+https://www.uplabs.com/ <br/>
+https://dribbble.com/ <br/>
+https://www.sketchappsources.com/ <br/>
 
 ## Gerar Assests 5X Android 
-https://www.img-bak.in/
+https://www.img-bak.in/ <br/>
 
 ## Bibliotecas Android
-https://android-arsenal.com/
+https://android-arsenal.com/ <br/>
 
 ## Animações Lottie
-https://lottiefiles.com/
+https://lottiefiles.com/ <br/>
