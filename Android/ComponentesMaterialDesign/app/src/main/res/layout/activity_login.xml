@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/default_margin"
-    tools:context=".LoginActivity">
+    tools:context=".login.LoginActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -57,11 +57,10 @@
 
         <Button
             android:id="@+id/btnLogin"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
+            style="@style/ButtonTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:backgroundTint="@color/blue_2196F3"
             android:layout_marginBottom="16dp"
             android:text="Entrar" />
 
@@ -72,7 +71,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/trasformers"
         app:civ_border_color="@color/colorPrimary"
