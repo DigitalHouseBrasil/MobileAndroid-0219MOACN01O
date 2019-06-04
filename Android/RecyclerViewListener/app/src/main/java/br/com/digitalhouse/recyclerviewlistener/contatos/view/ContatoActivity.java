@@ -17,6 +17,7 @@ import br.com.digitalhouse.recyclerviewlistener.contatos.model.Contato;
 
 public class ContatoActivity extends AppCompatActivity implements RecyclerViewClickListener {
 
+    //Atributos
     private RecyclerView recyclerView;
     private RecyclerViewContatosAdapter adapter;
 
@@ -27,14 +28,19 @@ public class ContatoActivity extends AppCompatActivity implements RecyclerViewCl
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Inicializamos as views
         recyclerView = findViewById(R.id.recyclerViewContatos);
+
+        // Adiciona o layout manager ao recyclerview
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Adiciona o adapter ao recyclerview
         adapter = new RecyclerViewContatosAdapter(getContatos(), this);
         recyclerView.setAdapter(adapter);
 
     }
 
+    // REtorna lista de contatos para recycleriew
     private List<Contato> getContatos() {
         List<Contato> contatos = new ArrayList<>();
         contatos.add(new Contato("Tairo", "11-91111-1111", R.drawable.trasformers));
@@ -47,6 +53,7 @@ public class ContatoActivity extends AppCompatActivity implements RecyclerViewCl
         return contatos;
     }
 
+    // Método para escutar evento de click em recyclerview
     @Override
     public void onClick(Contato contato) {
         Intent intent = new Intent(this, DetalheContatoActivity.class);
