@@ -20,7 +20,8 @@
                 android:value="br.com.digitalhouse.revisaoesharedprefences.home.view.HomeActivity" />
         </activity>
 
-        <activity android:name=".home.view.HomeActivity" />
+        <activity android:name=".home.view.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".login.view.LoginActivity">
             <intent-filter>
