@@ -34,13 +34,39 @@ public class RecyclerViewContatosAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int position) {
         final Contato contato = contatos.get(position);
         viewHolder.setConteudoNaTela(contato);
+
+        // seta o click para ir para outra tela (Detalhe)
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onClick(contato);
+            }
+        });
+
+        viewHolder.imageViewFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Se for favoirito muda a imagem
+                if (contato.isFavorite()){
+                    viewHolder.imageViewFavorite.setImageResource(R.drawable.ic_favorite_fill);
+                }else {
+                    viewHolder.imageViewFavorite.setImageResource(R.drawable.ic_favorite_border);
+                }
+
+                // configura um novo valor para o favorito
+                contato.setFavorite(!contato.isFavorite());
+            }
+        });
+
+        // Click em imagem de delete
+        viewHolder.imageViewDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeItem(position);
             }
         });
     }
@@ -50,12 +76,20 @@ public class RecyclerViewContatosAdapter extends RecyclerView.Adapter<RecyclerVi
         return contatos.size();
     }
 
+    //Método para remover o item
+    public void removeItem(int position){
+        contatos.remove(position);
+        notifyItemRemoved(position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         //Atributos dos elementos
         private ImageView imageViewFoto;
         private TextView textViewNome;
         private TextView textViewTelefone;
+        protected ImageView imageViewFavorite;
+        protected ImageView imageViewDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +97,8 @@ public class RecyclerViewContatosAdapter extends RecyclerView.Adapter<RecyclerVi
             imageViewFoto = itemView.findViewById(R.id.imageViewFoto);
             textViewNome = itemView.findViewById(R.id.textViewNome);
             textViewTelefone = itemView.findViewById(R.id.textViewTelefone);
+            imageViewFavorite = itemView.findViewById(R.id.imageViewFavorite);
+            imageViewDelete = itemView.findViewById(R.id.imageViewDelete);
         }
 
         //Atribui o as views os valores da variável contato

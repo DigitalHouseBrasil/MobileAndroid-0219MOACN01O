@@ -7,6 +7,7 @@ public class Contato implements Parcelable {
     private String nome;
     private String telefone;
     private int imagem;
+    private boolean favorite;
 
     public Contato() {
     }
@@ -21,6 +22,7 @@ public class Contato implements Parcelable {
         nome = in.readString();
         telefone = in.readString();
         imagem = in.readInt();
+        favorite = in.readByte() != 0;
     }
 
     @Override
@@ -28,6 +30,7 @@ public class Contato implements Parcelable {
         dest.writeString(nome);
         dest.writeString(telefone);
         dest.writeInt(imagem);
+        dest.writeByte((byte) (favorite ? 1 : 0));
     }
 
     @Override
@@ -69,5 +72,13 @@ public class Contato implements Parcelable {
 
     public void setImagem(int imagem) {
         this.imagem = imagem;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }
