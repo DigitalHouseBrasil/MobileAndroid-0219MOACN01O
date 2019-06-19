@@ -8,6 +8,9 @@ import android.widget.TextView;
 import java.util.Arrays;
 
 import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -104,6 +107,30 @@ public class MainActivity extends AppCompatActivity {
         // skip -> pula eventos
         // map -> maeia cada evento, podendo transformar seu valor
         // flatmap
+
+        // Flatmap usado quando quero depois da amissão de um evento quisermos retornar um novo observable
+        Observable<String> stringObservable = Observable.just("Aqui é um teste com flatmap");
+        Observable.just(10)
+                .flatMap(numero -> {
+                    System.out.println("Nostrando o número: " + numero);
+                    return stringObservable;
+                })
+                .subscribe(System.out::println);
+
+        // So são executados quando há um subscribre
+
+
+        // Schedulers
+        Observable.just(10)
+                .subscribeOn(Schedulers.io())
+                .flatMap(numero -> {
+                    System.out.println("Thread:" + Thread.currentThread().getName());
+                    return stringObservable;
+                })
+                .subscribeOn(Schedulers.newThread())
+                .subscribe(s -> {
+                    textViewMensagem.setText("Texto do numero: " + s);
+                });
 
     }
 }
