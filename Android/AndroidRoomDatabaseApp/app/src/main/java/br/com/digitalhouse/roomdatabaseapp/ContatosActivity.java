@@ -2,20 +2,17 @@ package br.com.digitalhouse.roomdatabaseapp;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.digitalhouse.roomdatabaseapp.adapters.RecyclerViewContatosAdapter;
 import br.com.digitalhouse.roomdatabaseapp.interfaces.RecyclerViewOnItemClickListener;
+import br.com.digitalhouse.roomdatabaseapp.model.Contato;
 
 public class ContatosActivity extends AppCompatActivity implements RecyclerViewOnItemClickListener {
     private FloatingActionButton fab;
