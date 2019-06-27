@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,9 +70,15 @@ public class ContatosActivity extends AppCompatActivity implements RecyclerViewO
 
         // buscar todos os item salvos na base de dados e carregar no recyclerview
         buscarTodosOsContatos();
+
+        Spinner spinner = findViewById(R.id.spinner);
+        String[] listItem = new String[]{"Tairo", "Jessica", "Vinicius"};
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, listItem);
+        spinner.setAdapter(arrayAdapter);
+
     }
 
-    public void buscarTodosOsContatos(){
+    public void buscarTodosOsContatos() {
 
         // Uso de thread
         /*new Thread(() -> {
@@ -88,7 +96,7 @@ public class ContatosActivity extends AppCompatActivity implements RecyclerViewO
                 .subscribe(contatos -> {
                     adapter.update(contatos);
                 }, throwable -> {
-                    Log.i("TAG", "buscarTodosOsContatos: "+ throwable.getMessage());
+                    Log.i("TAG", "buscarTodosOsContatos: " + throwable.getMessage());
                 });
     }
 
