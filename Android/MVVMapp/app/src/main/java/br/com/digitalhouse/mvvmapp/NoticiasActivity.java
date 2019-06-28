@@ -5,6 +5,7 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +15,7 @@ import java.util.List;
 import br.com.digitalhouse.mvvmapp.adapters.RecyclerViewNoticiasAdapter;
 import br.com.digitalhouse.mvvmapp.interfaces.RecyclerViewOnItemClickListener;
 import br.com.digitalhouse.mvvmapp.model.Noticia;
+import br.com.digitalhouse.mvvmapp.viewmodel.NoticiasViewModel;
 
 public class NoticiasActivity extends AppCompatActivity implements RecyclerViewOnItemClickListener {
 
@@ -21,6 +23,7 @@ public class NoticiasActivity extends AppCompatActivity implements RecyclerViewO
     private ProgressBar progressBar;
     private RecyclerViewNoticiasAdapter adapter;
     private List<Noticia> noticias = new ArrayList<>();
+    private NoticiasViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,12 @@ public class NoticiasActivity extends AppCompatActivity implements RecyclerViewO
         // Fazer a inicialização do view model
         // Buscar os dados no repository
         // Adicionar os observables
+        viewModel = ViewModelProviders.of(this).get(NoticiasViewModel.class);
+        viewModel.buscarNoticias();
 
+        viewModel.getNoticiasResposta().observe(this, noticiasResposta -> {
+            adapter.update(noticiasResposta.getNoticias());
+        });
     }
 
     @Override
