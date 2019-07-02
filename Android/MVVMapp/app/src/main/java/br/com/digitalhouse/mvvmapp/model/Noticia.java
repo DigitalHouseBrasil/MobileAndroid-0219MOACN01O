@@ -3,13 +3,27 @@ package br.com.digitalhouse.mvvmapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Noticia implements Parcelable {
+    @SerializedName("title")
+    @Expose
     private String title;
+
+    @SerializedName("date")
+    @Expose
     private String date;
+
+    @SerializedName("description")
+    @Expose
     private String description;
+
+    @SerializedName("author")
+    @Expose
     private String author;
 
-    public  Noticia(){
+    public Noticia() {
 
     }
 

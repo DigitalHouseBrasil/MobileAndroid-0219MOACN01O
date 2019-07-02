@@ -1,21 +1,19 @@
 package br.com.digitalhouse.mvvmapp;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.ViewOutlineProvider;
+import android.view.View;
 import android.widget.ProgressBar;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import br.com.digitalhouse.mvvmapp.adapters.RecyclerViewNoticiasAdapter;
 import br.com.digitalhouse.mvvmapp.interfaces.RecyclerViewOnItemClickListener;
 import br.com.digitalhouse.mvvmapp.model.Noticia;
@@ -54,16 +52,17 @@ public class NoticiasActivity extends AppCompatActivity implements RecyclerViewO
             adapter.update(noticias);
         });
 
+        viewModel.getLoadingLiveData().observe(this, isLoading -> {
+            if (isLoading){
+                progressBar.setVisibility(View.VISIBLE);
+            }else {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
 
-        if (savedInstanceState != null){
-
-        }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-        outState.putString("DADO", "TAIRO");
+        viewModel.getErrorLiveData().observe(this, throwable -> {
+            Snackbar.make(recyclerViewNotidias, throwable.getMessage(), Snackbar.LENGTH_SHORT).show();
+        });
     }
 
     @Override

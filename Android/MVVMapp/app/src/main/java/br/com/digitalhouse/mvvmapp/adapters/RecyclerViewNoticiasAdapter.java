@@ -60,17 +60,20 @@ public class RecyclerViewNoticiasAdapter extends RecyclerView.Adapter<RecyclerVi
 
         private TextView textViewTitulo;
         private TextView textViewDescricao;
+        private TextView textViewData;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textViewTitulo = itemView.findViewById(R.id.textViewTitle);
             textViewDescricao = itemView.findViewById(R.id.textViewDescricao);
+            textViewData = itemView.findViewById(R.id.textViewData);
         }
 
         public void bind(Noticia noticia) {
             textViewTitulo.setText(noticia.getTitle());
             textViewDescricao.setText(noticia.getDescription());
+            textViewData.setText(noticia.getDate());
         }
     }
 }
