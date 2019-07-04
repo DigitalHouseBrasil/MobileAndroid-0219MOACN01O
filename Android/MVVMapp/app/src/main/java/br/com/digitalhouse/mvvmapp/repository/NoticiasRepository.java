@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import br.com.digitalhouse.mvvmapp.data.network.ApiService;
 import br.com.digitalhouse.mvvmapp.model.NoticiasResposta;
 import io.reactivex.Single;
 
@@ -31,5 +32,9 @@ public class NoticiasRepository {
             e.printStackTrace();
             return Single.error(e);
         }
+    }
+
+    public Single<NoticiasResposta> obterListaNoticiasInternet(){
+        return ApiService.getApiService().getNoticias();
     }
 }

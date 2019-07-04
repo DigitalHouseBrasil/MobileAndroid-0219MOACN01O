@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import br.com.digitalhouse.mvvmapp.adapters.RecyclerViewNoticiasAdapter;
 import br.com.digitalhouse.mvvmapp.interfaces.RecyclerViewOnItemClickListener;
 import br.com.digitalhouse.mvvmapp.model.Noticia;
@@ -26,6 +27,7 @@ import br.com.digitalhouse.mvvmapp.viewmodel.NoticiasViewModel;
 public class NoticiasActivity extends AppCompatActivity implements RecyclerViewOnItemClickListener {
 
     private RecyclerView recyclerViewNotidias;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private TextView textViewTitle;
     private ProgressBar progressBar;
     private RecyclerViewNoticiasAdapter adapter;
@@ -40,6 +42,7 @@ public class NoticiasActivity extends AppCompatActivity implements RecyclerViewO
         setSupportActionBar(toolbar);
 
         progressBar = findViewById(R.id.progressBar);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         textViewTitle = findViewById(R.id.textViewTitle);
         recyclerViewNotidias = findViewById(R.id.recyclerViewNoticias);
         recyclerViewNotidias.setLayoutManager(new LinearLayoutManager(this));
@@ -68,13 +71,19 @@ public class NoticiasActivity extends AppCompatActivity implements RecyclerViewO
         viewModel.getLoadingLiveData().observe(this, isLoading -> {
             if (isLoading) {
                 progressBar.setVisibility(View.VISIBLE);
+                swipeRefreshLayout.setRefreshing(true);
             } else {
                 progressBar.setVisibility(View.GONE);
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 
         viewModel.getErrorLiveData().observe(this, throwable -> {
             Snackbar.make(recyclerViewNotidias, throwable.getMessage(), Snackbar.LENGTH_SHORT).show();
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            viewModel.buscarNoticias();
         });
     }
 

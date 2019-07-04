@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import br.com.digitalhouse.mvvmapp.model.Noticia;
 import br.com.digitalhouse.mvvmapp.repository.NoticiasRepository;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -40,8 +41,16 @@ public class NoticiasViewModel extends AndroidViewModel {
     }
 
     public void buscarNoticias() {
+
+        /*if (AppUtil.isNetworkConnected(getApplication().getApplicationContext())){
+
+        }*/
+
         disposable.add(
-                repository.obterListaNoticiasDoArquivo(getApplication().getApplicationContext())
+
+                Single.concat(
+                        repository.obterListaNoticiasDoArquivo(getApplication().getApplicationContext()),
+                        repository.obterListaNoticiasInternet())
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .doOnSubscribe(disposable1 -> loadingLiveData.setValue(true))
