@@ -8,6 +8,6 @@ import retrofit2.http.Query;
 public interface API {
 
     @GET("sites/MLA/search")
-    Observable<MercadoLivreResponse> searchItem(@Query("q") String item);
+    Observable<MercadoLivreResponse> searchItem(@Query("q") String item, @Query("offset") int pagina, @Query("limit") int limite);
 }
 

@@ -29,7 +29,7 @@ public class MercadoLivreRepository {
     }
 
     // Pega os items que virão da api do mercado livre
-    public Observable<MercadoLivreResponse> searchItems(String item) {
-        return RetrofitService.getApiService().searchItem(item);
+    public Observable<MercadoLivreResponse> searchItems(String item, int pagina, int limite) {
+        return RetrofitService.getApiService().searchItem(item, pagina, limite);
     }
 }

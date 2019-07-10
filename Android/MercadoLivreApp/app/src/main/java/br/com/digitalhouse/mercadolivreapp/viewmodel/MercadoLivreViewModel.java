@@ -1,7 +1,6 @@
 package br.com.digitalhouse.mercadolivreapp.viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
+import br.com.digitalhouse.mercadolivreapp.data.database.DatabaseRoom;
 import br.com.digitalhouse.mercadolivreapp.model.MercadoLivreResponse;
 import br.com.digitalhouse.mercadolivreapp.model.Result;
 import br.com.digitalhouse.mercadolivreapp.repository.MercadoLivreRepository;
@@ -34,9 +34,9 @@ public class MercadoLivreViewModel extends AndroidViewModel {
     }
 
     // Ao buscar o item verificamos se estamos conectados ou não
-    public void searchItem(String item) {
+    public void searchItem(String item, int pagina, int limite) {
         if (isNetworkConnected(getApplication())) {
-            getFromNetwork(item);
+            getFromNetwork(item, pagina, limite);
         } else {
             getFromLocal();
         }
@@ -45,19 +45,48 @@ public class MercadoLivreViewModel extends AndroidViewModel {
     private void getFromLocal() {
 
         // Adicionamos a chamada a um disposible para podermos eliminar o disposable da destruição do viewmodel
+        disposable.add(
+                repository.getLocalResults(getApplication())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe(disposable1 -> {
+                        })
+                        .doAfterTerminate(() -> {
+                        })
+                        .subscribe(results -> {
+                            resultLiveData.setValue(results);
+                        }, throwable -> {
+
+                        })
+        );
 
     }
 
-    private void getFromNetwork(String item) {
+    private void getFromNetwork(String item, int pagina, int limite) {
 
         // Adicionamos a chamada a um disposible para podermos eliminar o disposable da destruição do viewmodel
 
         //Salvar os items quando tivermos buscado
+        disposable.add(
+                repository.searchItems(item, pagina, limite)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe(disposable1 -> {
+                        })
+                        .doAfterTerminate(() -> {
+                        })
+                        .subscribe(mercadoLivreResponse -> {
+                            resultLiveData.setValue(mercadoLivreResponse.getResults());
+                        }, throwable -> {
+
+                        })
+        );
 
     }
 
     public MercadoLivreResponse saveItems(MercadoLivreResponse mercadoLivreResponse) {
-
+        DatabaseRoom.getDatabase(getApplication().getApplicationContext()).resultsDAO().insert(mercadoLivreResponse.getResults());
+        return mercadoLivreResponse;
     }
 
     // Limpa as chamadas que fizemos no RX
