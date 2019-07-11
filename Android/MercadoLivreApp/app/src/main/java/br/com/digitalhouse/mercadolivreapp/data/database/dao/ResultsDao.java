@@ -28,6 +28,9 @@ public interface ResultsDao {
     @Delete
     void delete(Result result);
 
+    @Query("Delete from result")
+    void deleteAll();
+
     @Query("Select * from result limit 30")
     Flowable<List<Result>> getAll(); // Aqui retornamos um Flowable que é o observavel para o ROOM DATABASE
 }
