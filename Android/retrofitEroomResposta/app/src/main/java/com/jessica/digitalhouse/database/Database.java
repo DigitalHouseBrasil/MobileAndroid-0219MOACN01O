@@ -1,13 +1,13 @@
 package com.jessica.digitalhouse.database;
 
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import android.content.Context;
 
 import com.jessica.digitalhouse.model.Result;
 
-@android.arch.persistence.room.Database(entities = {Result.class}, version =1, exportSchema = false)
+@androidx.room.Database(entities = {Result.class}, version =1, exportSchema = false)
 @TypeConverters(Converters.class)
 public abstract class Database extends RoomDatabase {
 

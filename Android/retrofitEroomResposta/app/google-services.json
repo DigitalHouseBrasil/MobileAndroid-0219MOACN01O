@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "879003339183",
+    "firebase_url": "https://retrofiteroomresposta.firebaseio.com",
+    "project_id": "retrofiteroomresposta",
+    "storage_bucket": "retrofiteroomresposta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879003339183:android:6c7b0124131927b8",
+        "android_client_info": {
+          "package_name": "com.jessica.digitalhouse.view"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879003339183-suv7uakokvlide8rgbcci74bp5ka04uq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jessica.digitalhouse.view",
+            "certificate_hash": "1d1594192bc01327db84102d8a9a856ee1f5a930"
+          }
+        },
+        {
+          "client_id": "879003339183-dif01873jto8vrih5ml9vmj2e51213p9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAANDu6TVCRLPU4QxZO980jNsTD9fDiZkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879003339183-dif01873jto8vrih5ml9vmj2e51213p9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

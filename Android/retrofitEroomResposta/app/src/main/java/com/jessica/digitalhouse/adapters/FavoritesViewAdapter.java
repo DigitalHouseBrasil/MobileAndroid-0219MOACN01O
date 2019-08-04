@@ -11,21 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jessica.digitalhouse.R;
 import com.jessica.digitalhouse.interfaces.FavoriteItemClick;
-import com.jessica.digitalhouse.interfaces.RecyclerViewClick;
 import com.jessica.digitalhouse.model.Result;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class FavoritesViewAdapter extends RecyclerView.Adapter<FavoritesViewAdapter.ViewHolder> {
 
     private List<Result> results;
-    private RecyclerViewClick listener;
     private FavoriteItemClick favoriteItemClick;
 
-    public RecyclerViewAdapter(List<Result> results, RecyclerViewClick listener, FavoriteItemClick favoriteItemClick) {
+    public FavoritesViewAdapter(List<Result> results, FavoriteItemClick favoriteItemClick) {
         this.results = results;
-        this.listener = listener;
         this.favoriteItemClick = favoriteItemClick;
     }
 
@@ -41,19 +38,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Result result = results.get(i);
         viewHolder.bind(result);
 
-        viewHolder.itemView.setOnClickListener(v -> listener.clickListenner(result));
         viewHolder.imageFavorite.setOnClickListener(v -> favoriteItemClick.removeFavoriteClickListener(result));
     }
 
     //método que atualiza a lista do adapter
-    public void setResult(List<Result> results) {
-        //verificar se o result já tem informação
-        if (results.size() == 0) {
-            this.results = results;
-        } else {
-            this.results.addAll(results);
-            notifyDataSetChanged();
-        }
+    public void update(List<Result> results) {
+        this.results = results;
+        notifyDataSetChanged();
+    }
+
+    public void removeItem(Result result){
+        results.remove(result);
+        notifyDataSetChanged();
     }
 
     @Override
