@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/tairo/workspace/MobileAndroid-0219MOACN01O/Android/TabLayoutEViewPager/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
+            "outputFile": "/home/tairo/workspace/DigitalHouse/MobileAndroid-0219MOACN01O/Android/TabLayoutEViewPager/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
-                    "source": "/home/tairo/.gradle/caches/transforms-2/files-2.1/30377006a552031274d88bf6b71e9a8a/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "source": "/home/tairo/.gradle/caches/transforms-2/files-2.1/37ec02f661e3547c5499ecdfd9f3cd1f/appcompat-1.1.0/res/values-ldltr-v21/values-ldltr-v21.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
